@@ -1,3 +1,9 @@
 [submodule "tomcatSample"]
 	path = tomcatSample
 	url = https://github.com/QuiteStochastic/tomcatSample
+[submodule "tomcatMangoDocker"]
+	path = tomcatMangoDocker
+	url = https://github.com/QuiteStochastic/tomcatMangoDocker.git
+[submodule "mongoSample"]
+	path = mongoSample
+	url = https://github.com/QuiteStochastic/mongoSample.git
