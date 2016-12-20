@@ -9,6 +9,7 @@ services:
       - "8080:8080"
   mongo:
     #container_name: mongo
-    image: mongo
+    build: ./mongoSample
+    image: tomcat_sample
     network_mode: "service:tomcat"
 
