@@ -1,0 +1,3 @@
+[submodule "tomcatSample"]
+	path = tomcatSample
+	url = https://github.com/QuiteStochastic/tomcatSample
