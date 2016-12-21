@@ -2,14 +2,14 @@ version: '2'
 
 services:
   tomcat:
-    #container_name: tomcat
+    container_name: tomcat_test
     build: ./tomcatSample
     image: tomcat_sample
     ports:
       - "8080:8080"
   mongo:
-    #container_name: mongo
+    container_name: mongo_test
     build: ./mongoSample
-    image: tomcat_sample
+    image: mongo_sample
     network_mode: "service:tomcat"
 
