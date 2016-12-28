@@ -30,11 +30,15 @@ openssl req -key tomcat_key.pem -new -sha256 -out tomcat_csr.pem
 ##sign with root CA
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in tomcat_csr.pem -out tomcat_cert.pem
 
-##convert private key pem and cert pem to pkcs12
-openssl pkcs12 -export -out tomcat_cert.p12 -inkey tomcat_key.pem -in tomcat_cert.pem -certfile ca_cert.pem
+##package private key pem, cert pem, and CA pem to pkcs12
+openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem -certfile ca_cert.pem
+##password is set as "qwertyu"
 
 
 ##do the same stuff as right above but for mongo
 openssl genrsa -out mongo_key.pem 2048
 openssl req -key mongo_key.pem -new -sha256 -out mongo_csr.pem
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in mongo_csr.pem -out mongo_cert.pem
+
+##put private and public keys for mongo in same pem file
+cat mongo_key.pem mongo_cert.pem > mongo.pem
