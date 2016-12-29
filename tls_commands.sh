@@ -21,11 +21,12 @@ mkdir -p demoCA/newcerts
 touch demoCA/index.txt
 touch demoCA/serial
 echo 1000 > demoCA/serial
+##go into intex.txt.attr and set unique_subject = no, or else it will demand unique common names
 
 
 ##create a private key for tomcat
 openssl genrsa -out tomcat_key.pem 2048
-##create CSR, make sure you give it a Common Name but everything else can be left blank
+##create CSR, make sure you give it a Common Name but everything else can be left blank.  for wildcard host, put * as the common name
 openssl req -key tomcat_key.pem -new -sha256 -out tomcat_csr.pem
 ##sign with root CA
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in tomcat_csr.pem -out tomcat_cert.pem

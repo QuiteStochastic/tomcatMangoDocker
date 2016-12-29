@@ -1,2 +1,4 @@
 V	180106234412Z		1000	unknown	/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=tomcat
 V	180106234933Z		1001	unknown	/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=mongo
+V	180108215050Z		1002	unknown	/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=*
+V	180108220353Z		1003	unknown	/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=*
