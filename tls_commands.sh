@@ -36,6 +36,11 @@ openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
 ##password is set as "qwertyu"
 
 
+##test, p12 file with no root cert file
+openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
+
+
+
 ##do the same stuff as right above but for mongo
 openssl genrsa -out mongo_key.pem 2048
 openssl req -key mongo_key.pem -new -sha256 -out mongo_csr.pem
@@ -43,3 +48,12 @@ openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -i
 
 ##put private and public keys for mongo in same pem file
 cat mongo_key.pem mongo_cert.pem > mongo.pem
+
+
+###############################################
+
+##debuging inside tomcat container:
+
+docker exec -it tomcat_test bash
+
+keytool -list -keystore "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts"
