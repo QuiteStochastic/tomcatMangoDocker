@@ -57,3 +57,16 @@ cat mongo_key.pem mongo_cert.pem > mongo.pem
 docker exec -it tomcat_test bash
 
 keytool -list -keystore "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts"
+
+
+
+
+
+##"certificate unknown" when root cert, cert, and key are all in the p12
+
+##"no ssl certificate" provided when only self's cert and key are in p12
+
+
+
+
+##Check to see that the correct truststore is in use. If -Djavax.net.ssl.trustStore has been        configured, it will override the location of the default truststore, which will need to be checked.?
