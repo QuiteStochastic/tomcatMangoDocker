@@ -13,7 +13,7 @@ openssl genrsa -aes256 -out ca_key.pem 4096
 openssl req -key ca_key.pem -new -x509 -days 7300 -sha256 -extensions v3_ca -out ca_cert.pem
 
 
-##skipping making the intermediate key pair because this is just exploratory stuff
+##typically one would create an intermediate key pair at this point, but skipping making the intermediate key pair because this is just exploratory stuff
 
 
 ##do some nonsense to make openssl happy
@@ -35,13 +35,12 @@ openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -i
 openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem -certfile ca_cert.pem
 ##password is set as "qwertyu"
 
-
-##test, p12 file with no root cert file
+##this following line is an alternative to the above command, yields a p12 file with no root cert file, only tomcat's public and private key
 openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
 
 
 
-##do the same stuff as right above but for mongo
+##do the same stuff as above few commands but for mongo
 openssl genrsa -out mongo_key.pem 2048
 openssl req -key mongo_key.pem -new -sha256 -out mongo_csr.pem
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in mongo_csr.pem -out mongo_cert.pem
@@ -59,14 +58,3 @@ docker exec -it tomcat_test bash
 keytool -list -keystore "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts"
 
 
-
-
-
-##"certificate unknown" when root cert, cert, and key are all in the p12
-
-##"no ssl certificate" provided when only self's cert and key are in p12
-
-
-
-
-##Check to see that the correct truststore is in use. If -Djavax.net.ssl.trustStore has been        configured, it will override the location of the default truststore, which will need to be checked.?
