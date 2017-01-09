@@ -38,6 +38,9 @@ openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
 ##this following line is an alternative to the above command, yields a p12 file with no root cert file, only tomcat's public and private key
 openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
 
+##create java keystore
+keytool -v -importkeystore -srckeystore tomcat.p12 -srcstoretype PKCS12 -destkeystore tomcat_keystore.jks -deststoretype jks
+
 
 
 ##do the same stuff as above few commands but for mongo
@@ -55,6 +58,7 @@ cat mongo_key.pem mongo_cert.pem > mongo.pem
 
 docker exec -it tomcat_test bash
 
+#examine keystore
 keytool -list -keystore "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts"
-
+keytool -list -v -keystore tomcat_keystore.jks
 
