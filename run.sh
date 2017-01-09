@@ -14,6 +14,7 @@ cp tomcat_key.pem tomcatSample
 cp tomcat.p12 tomcatSample
 cp mongo.pem mongoSample
 
+cp tomcat_keystore.jks tomcatSample
 
 docker-compose up
 
