@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./clean_docker.sh
+
 cd tomcatSample
 ./build_tomcat.sh
 
