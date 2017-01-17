@@ -31,15 +31,9 @@ openssl req -key tomcat_key.pem -new -sha256 -out tomcat_csr.pem
 ##sign with root CA
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in tomcat_csr.pem -out tomcat_cert.pem
 
-##package private key pem, cert pem, and CA pem to pkcs12
-openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem -certfile ca_cert.pem
+##package tomcat private key pem and tomcat cert pem to pkcs12
 ##password is set as "qwertyu"
-
-##this following line is an alternative to the above command, yields a p12 file with no root cert file, only tomcat's public and private key
 openssl pkcs12 -export -out tomcat.p12 -inkey tomcat_key.pem -in tomcat_cert.pem
-
-##create java keystore
-keytool -v -importkeystore -srckeystore tomcat.p12 -srcstoretype PKCS12 -destkeystore tomcat_keystore.jks -deststoretype jks
 
 
 
