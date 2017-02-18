@@ -1,0 +1,20 @@
+version: '3'
+
+
+
+services:
+  tomcat:
+    image: tomcat_sample #will have to replace this with a dockerhub path, or make sure it is built on the local machine
+    ports:
+      - 8443:8443
+    networks:
+      - tmd_net
+  mongo:
+    image: mongo_sample
+    #ports:
+    #  - 27017:27017
+    networks:
+      - tmd_net
+
+networks:
+    tmd_net:

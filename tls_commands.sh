@@ -26,7 +26,7 @@ echo 1000 > demoCA/serial
 
 ##create a private key for tomcat
 openssl genrsa -out tomcat_key.pem 2048
-##create CSR, make sure you give it a Common Name but everything else can be left blank.  for wildcard host, put * as the common name
+##create CSR, make sure you give it a Common Name but for testing purposes everything else can be left blank.  for wildcard host, put * as the common name
 openssl req -key tomcat_key.pem -new -sha256 -out tomcat_csr.pem
 ##sign with root CA
 openssl ca -cert ca_cert.pem -keyfile ca_key.pem -days 375 -notext -md sha256 -in tomcat_csr.pem -out tomcat_cert.pem
