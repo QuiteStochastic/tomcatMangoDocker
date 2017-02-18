@@ -34,11 +34,3 @@ export PATH=/usr/local/bin:$PATH
 cgroupfs-mount
 ##turn on experimental mode
 dockerd --experimental &
-
-
-##clone repos
-
-git clone https://oliverl@coderepo.mobilehealth.va.gov/scm/maei/tomcatmongodocker.git
-cd tomcatmongodocker
-git clone https://oliverl@coderepo.mobilehealth.va.gov/scm/maei/tomcatsample.git
-git clone https://oliverl@coderepo.mobilehealth.va.gov/scm/maei/mongosample.git
